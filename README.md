@@ -1,83 +1,97 @@
-# Gaurav Wagh — Portfolio Website
+# Gaurav Wagh — Portfolio
 
-A modern, responsive, and professional portfolio website built with **Next.js 15** and **Vanilla CSS**.
+Personal engineering portfolio. Single static page, deployed at
+[gauravwagh.tech](https://gauravwagh.tech).
 
-## 🚀 Quick Start
+## Stack
+
+| | |
+|---|---|
+| Framework | Next.js 15 (App Router), React 19 |
+| Language | TypeScript (strict) |
+| Styling | CSS Modules + design tokens in `app/globals.css` |
+| Fonts | Inter + JetBrains Mono, self-hosted via `next/font` |
+| Runtime deps | `next`, `react`, `react-dom` — nothing else |
+
+## Getting started
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+| Script | Purpose |
+|---|---|
+| `npm run dev` | Dev server (Turbopack) on :3000 |
+| `npm run build` | Production build |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` | ESLint |
 
-## 📁 Project Structure
+## Structure
 
 ```
-Portfolio/
-├── app/
-│   ├── layout.js         # Root layout with SEO metadata & fonts
-│   ├── page.js            # Main page composing all sections
-│   ├── globals.css        # Design system (CSS variables, themes, reset)
-│   └── components.css     # Component-level styles
-├── components/
-│   ├── Navbar.js          # Fixed nav with theme toggle & mobile menu
-│   ├── Hero.js            # Hero section with code block visual
-│   ├── About.js           # About me with highlight cards
-│   ├── Skills.js          # Categorized skills grid
-│   ├── Projects.js        # Project cards with tech tags
-│   ├── Experience.js      # Timeline-style experience
-│   ├── Trading.js         # MetaTrader 5 trading algorithms
-│   ├── Contact.js         # Contact form & social links
-│   └── Footer.js          # Footer with quick links
-├── hooks/
-│   └── useScrollAnimation.js  # Intersection Observer scroll animations
-├── package.json
-├── next.config.mjs
-└── jsconfig.json
+app/
+  globals.css          Design tokens, reset, shared primitives
+  layout.tsx           Metadata, fonts, JSON-LD, theme script
+  page.tsx             Section composition
+  opengraph-image.tsx  Social card, generated at build time
+  sitemap.ts robots.ts icon.svg
+components/
+  layout/              Header, Footer, ThemeScript
+  sections/            Hero, About, Experience, Projects, Stack, AlgoLab, Contact
+  ui/                  Section, Reveal, FlowDiagram, Icon
+data/                  All page content, typed
+hooks/                 useActiveSection, useTheme
 ```
 
-## ✨ Features
+## Editing content
 
-- **Dark / Light mode** toggle
-- **Smooth scroll** navigation
-- **Animated sections** (fade-in on scroll)
-- **Glassmorphism** cards with gradient accents
-- **Responsive** layout (mobile, tablet, desktop)
-- **SEO** optimized meta tags
-- **Download Resume** button
-- **Contact form** ready for integration
+**All copy lives in `data/` — components read it, they don't contain it.**
 
-## 🛠️ Tech Stack
+| File | Contents |
+|---|---|
+| `data/profile.ts` | Name, role, contact details, links, headline, education, principles |
+| `data/experience.ts` | Employment history |
+| `data/projects.ts` | Client projects (problem / solution / contribution / workflow) |
+| `data/stack.ts` | Technology groups |
+| `data/algo.ts` | Algo Lab content and architecture diagrams |
 
-- **Next.js 15** (App Router, Turbopack)
-- **React 19**
-- **Vanilla CSS** with custom properties
-- **Inter** font (Google Fonts)
+`data/types.ts` defines the shape of each; the build fails if a field is
+missing, so content and rendering cannot drift apart.
 
-## 🚢 Deployment
+### Ground rules for content
 
-### Vercel (Recommended)
+- Everything on the site must be supported by `public/Gaurav-Wagh-Resume.pdf`.
+  No invented projects, metrics, counters or client names.
+- Client work is under NDA: no repository links, no screenshots.
+- The Algo Lab is a personal side project and is labelled as such. It must
+  never carry performance or profitability claims.
 
-1. Push to GitHub
-2. Import in [vercel.com](https://vercel.com)
-3. Deploy — zero config needed
+## Design system
 
-### Netlify
+Tokens are defined once in `app/globals.css` for dark, then overridden for
+light under `[data-theme='light']`. Every text/background pair in both themes
+is verified at WCAG AA (4.5:1 body, 3:1 large text and focus rings) — re-check
+before changing any colour.
 
-1. Push to GitHub
-2. Import in [netlify.com](https://netlify.com)
-3. Build command: `npm run build`
-4. Publish directory: `.next`
+Motion is opacity/transform only, wrapped in `prefers-reduced-motion`. The
+`Reveal` component starts visible and only hides itself once JavaScript has
+confirmed it can reveal again, so content is never lost when scripting fails.
 
-## 📝 Customization
+## Configuration
 
-- **Update personal info**: Edit text in components under `components/`
-- **Add projects**: Edit the `projects` array in `components/Projects.js`
-- **Add experience**: Edit the `experiences` array in `components/Experience.js`
-- **Contact form**: Integrate with [Formspree](https://formspree.io), [EmailJS](https://emailjs.com), or your backend
-- **Resume**: Place your PDF in `public/resume.pdf` and update the download link
-- **Social links**: Update URLs in `Contact.js` and `Footer.js`
+The contact form posts to [Web3Forms](https://web3forms.com). The access key
+identifies the destination inbox and is public by design, but it is read from
+the environment so it can be rotated without a code change:
+
+```bash
+# .env.local
+NEXT_PUBLIC_WEB3FORMS_KEY=your-key-here
+```
+
+If unset, the committed fallback key is used.
+
+## Deployment
+
+Push to `master`; Vercel builds with zero config. The build is fully static
+(`○ prerendered`), so there is no server runtime to provision.

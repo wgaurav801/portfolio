@@ -24,6 +24,10 @@ model_capabilities.yaml
 # production
 /build
 
+# editors
+.idea/
+.vscode/
+
 # misc
 .DS_Store
 *.pem

@@ -1,0 +1,43 @@
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  scroll-margin-top: var(--header-height);
+}
+
+/* Alternating tone gives the page vertical rhythm without extra ornament. */
+.toned {
+  background: var(--surface-1);
+  border-block: 1px solid var(--border);
+}
+
+.header {
+  max-width: 62ch;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.headerCentered {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.index {
+  color: var(--text-tertiary);
+}
+
+.title {
+  margin-top: var(--space-4);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+}
+
+.description {
+  margin-top: var(--space-4);
+  max-width: 58ch;
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.headerCentered .description {
+  margin-inline: auto;
+}

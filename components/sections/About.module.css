@@ -1,0 +1,98 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.bio p {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+}
+
+.education {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.educationLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.degree {
+  margin-top: var(--space-3);
+  font-size: var(--text-base);
+  font-weight: 550;
+  color: var(--text-primary);
+}
+
+.institution {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.eduMeta {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* ---- Principles ---- */
+.principles {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.principle {
+  position: relative;
+  padding: var(--space-5) var(--space-5) var(--space-5) var(--space-6);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--duration-base) var(--ease-in-out);
+}
+
+/* A left rule instead of an icon: quieter, and it survives both themes. */
+.principle::before {
+  content: '';
+  position: absolute;
+  inset-block: var(--space-5);
+  inset-inline-start: 0;
+  width: 2px;
+  background: var(--border-strong);
+  border-radius: 0 1px 1px 0;
+  transition: background-color var(--duration-base) var(--ease-in-out);
+}
+
+.principle:hover {
+  border-color: var(--border-strong);
+}
+
+.principle:hover::before {
+  background: var(--accent);
+}
+
+.principleTitle {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.principleBody {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 920px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
