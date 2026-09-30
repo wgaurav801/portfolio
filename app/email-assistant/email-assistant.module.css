@@ -1,0 +1,211 @@
+﻿/* ================================================================
+   Email-assistant section styles
+   Uses global CSS tokens — no hardcoded colours.
+   ================================================================ */
+
+.page {
+  min-height: 100dvh;
+  padding-block: var(--space-20) var(--space-24);
+  padding-inline: var(--gutter);
+}
+
+/* ── Hero ─────────────────────────────────────────────────────── */
+.hero {
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  padding-bottom: var(--space-16);
+  border-bottom: 1px solid var(--border);
+}
+
+.heading {
+  margin-top: var(--space-4);
+  font-size: var(--text-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.lead {
+  margin-top: var(--space-6);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  max-width: 60ch;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-10);
+}
+
+.linkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 550;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    background-color var(--duration-fast) var(--ease-in-out),
+    border-color var(--duration-fast) var(--ease-in-out),
+    color var(--duration-fast) var(--ease-in-out);
+}
+
+.linkBtn:hover {
+  background: var(--accent-subtle);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+/* ── Content ──────────────────────────────────────────────────── */
+.content {
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  margin-top: var(--space-16);
+}
+
+.section {
+  margin-top: var(--space-12);
+}
+
+.section:first-child {
+  margin-top: 0;
+}
+
+.section p {
+  margin-top: var(--space-4);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.section p + p {
+  margin-top: var(--space-4);
+}
+
+.sectionHeading {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+}
+
+.inlineLink {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.inlineLink:hover {
+  color: var(--accent-hover);
+}
+
+/* ── Footer ───────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-20);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+.separator {
+  color: var(--border-strong);
+}
+
+.footerLink {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.footerLink:hover {
+  color: var(--accent);
+}
+
+/* ── Legal pages (privacy / terms) ───────────────────────────── */
+.legalPage {
+  min-height: 100dvh;
+  padding-block: var(--space-20) var(--space-24);
+  padding-inline: var(--gutter);
+}
+
+.legalArticle {
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+}
+
+.legalTitle {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+}
+
+.legalDate {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.legalSection {
+  margin-top: var(--space-12);
+}
+
+.legalSection h2 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+}
+
+.legalSection p {
+  margin-top: var(--space-4);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.legalSection p + p {
+  margin-top: var(--space-4);
+}
+
+.legalEmail {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent);
+}
+
+.legalFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-20);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+.legalFooterLink {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.legalFooterLink:hover {
+  color: var(--accent);
+}
